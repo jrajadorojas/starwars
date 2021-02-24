@@ -1,0 +1,47 @@
+{% extends 'app/base.html' %}
+{% load static %}
+
+{% block title %}
+    {{ film.name }}
+{% endblock %}
+
+{% block content %}
+
+
+{% if not search %}
+    <div class="container mt-4">
+        <div class="row">
+            <h1>{{ film.name }}</h1>
+        </div>
+        <div class="row">
+            <div class="col-lg-8 text-center">
+                <img src="{{ film.image.url }}" alt="">
+            </div>
+            <div class="col-lg-4">
+                    {{description}}
+            </div>
+        </div>
+        <a href="{% url 'app:index' %}" class="btn btn-success mt-4">Volver</a>
+    </div>
+{% else %}
+    <div class="container mt-4">
+        <div class="row">
+            <h1>{{ film }}</h1>
+        </div>
+        <div class="row">
+            <div class="col-lg-8 text-center">
+                <img src="{{ image }}" alt="">
+            </div>
+            <div class="col-lg-4">
+                    {{description}}
+            </div>
+        </div>
+        <a href="{% url 'app:index' %}" class="btn btn-success mt-4">Volver</a>
+    </div>
+
+{% endif %}
+    
+
+
+
+{% endblock %}

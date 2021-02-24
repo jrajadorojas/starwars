@@ -1,0 +1,71 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}Star Wars{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-lg-12">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="{% url 'app:index' %}">Star Wars</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+          
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                  <a class="nav-link" href="{% url 'app:path_views' %}">Páginas vistas <span class="sr-only">(current)</span></a>
+                </li>
+                
+              </ul>
+              <form class="form-inline my-2 my-lg-0" type="GET" action="{% url 'app:search_films' %}">
+                <input class="form-control mr-sm-2" type="search" name="film" placeholder="Search" aria-label="Buscar">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
+              </form>
+            </div>
+          </nav>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-lg-12">
+        <div id="carouselExampleControls" class="mt-3" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <img class="d-block mx-auto" src="{{'media/R2d2.jpg'}}" alt="">
+              </div>
+              <div class="carousel-item">
+                <img class="d-block mx-auto" src="{{'media/C3PO.jpg'}}" alt="">
+              </div>
+              <div class="carousel-item">
+                <img class="d-block mx-auto" src="{{'media/darthvader.jpg'}}" alt="">
+              </div>
+            </div>
+            <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="sr-only">Next</span>
+            </a>
+          </div>  
+    </div>
+</div>
+
+<h1 class="text-center mb-3">Listado de Películas</h1>
+<div class="container">
+    <div class="row">
+        {% for film in films %}
+            <div class="col-lg-4 text-center mb-5">
+                <a href="{{ film.get_absolute_url }}">
+                    <img class="img-fluid mx-auto" src="{{ film.image.url }}" alt="">
+                </a>
+            </div>
+        {% endfor %}
+        
+    </div>
+</div>
+
+{% endblock %}
